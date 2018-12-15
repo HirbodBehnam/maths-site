@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/Assets/All.css">
+    <script src="Assets/All.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var lang = 0;
+        function validateAndFind(input){
+            var e = $("#ER");
+            e.hide();
+            var n = parseInt(input);
+            if(n === "NaN" || isNaN(n) || isNaN(input)){
+                $("#ErrorMSG").text(lang === 0 ? "The input is not a number." : "مقدار مورد نظر یک عدد نیست.");
+                e.show();
+                return;
+            }
+            if(n < 2){
+                $("#ErrorMSG").text(lang === 0 ?"Number cannot be less than 2" : "عدد نمی تواند کمتر از 2 باشد.");
+                e.show();
+                return;
+            }
+            if(n > 2000000000){
+                $("#ErrorMSG").text(lang === 0 ?"Number cannot be more than 2,000,000,000" : "عدد نمی تواند بیشتر از 2 میلیارد باشد.");
+                e.show();
+                return;
+            }
+            getAndSetFactors(input);
+        }
+        function getAndSetFactors(number){
+            var TO = Math.sqrt(parseInt(number));
+            var Factors = [1];
+            for(var i = 2;i<TO;i++) {
+                if (number % i === 0) {
+                    Factors.push(i);
+                    if (i !== number / i) { // Don't add the square root twice
+                        Factors.push(number / i);
+                    }
+                }
+            }
+            Factors.push(number);
+            Factors.sort(sortNumber);
+            var fr = $("#FactorsRes");
+            fr.show();
+            fr.empty();
+            for(var j = 0;j<Factors.length;j++){
+                fr.append("<li>" + Factors[j] + "</li>");
+            }
+        }
+        function sortNumber(a,b) {
+            return a - b;
+        }
+        function checkAndSetPersian() {
+            if(checkPersian()){
+                lang = 1;
+                //Set Font
+                var style = $("<style>label,h3,p,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+                $('html > head').append(style);
+                //Set text
+                $('html > body > div > h3').text("پیدا کردن شمارنده های یک عدد.");
+                $('html > body > div > label > b').text("عدد را وارد کنید:");
+                $('html > body > div > div > h3').text("خطا!");
+                $('html > body > div > button').text("پیدا کن");
+            }
+        }
+    </script>
+</head>
+<body onload="checkAndSetPersian();">
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:4px;">
+        <a href="/" class="w3-bar-item w3-button w3-hide-small">Rare Math Calculations</a>
+        <a href="/" class="w3-bar-item w3-button w3-hide-medium w3-hide-large">Maths</a>
+        <div class="w3-dropdown-hover w3-right">
+            <button class="w3-button" onclick="window.location.href = '/';">Back</button>
+        </div>
+    </div>
+</div>
+<div class="w3-container" style="margin-top: 50px">
+    <div id="ER" class="w3-panel w3-red w3-card-4" style="display: none">
+        <h3>Error!</h3>
+        <p id="ErrorMSG"></p>
+    </div>
+    <h3 style="text-align: center">Find factors of a number</h3>
+    <label><b>Enter the number:</b></label>
+    <input class="w3-input w3-border" type="number" id="FactorsInput">
+    <button onclick="validateAndFind($('#FactorsInput').val());" class="w3-btn w3-green w3-ripple calculate">Find</button>
+    <ul id="FactorsRes" class="w3-ul w3-border" style="display: none;">
+    </ul>
+</div>
+</body>
+</html>

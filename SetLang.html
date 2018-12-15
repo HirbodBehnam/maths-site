@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Language</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function setLang(number) {
+            var date = new Date();
+            date.setTime(date.getTime() + (720*24*60*60*1000));
+            var expires = "; expires=" + date.toUTCString();
+            document.cookie = "Lang=" + number + expires + "; path=/";
+            window.location.href = "/";
+        }
+    </script>
+</head>
+<body class="w3-container">
+    <p>Choose your language:</p>
+    <ul class="w3-ul w3-border">
+        <li onclick="setLang(0);">English</li>
+        <li onclick="setLang(1);">Persian</li>
+    </ul>
+    <div style="position: absolute; bottom: 5px;text-align: center;width: 100%;">
+        Hirbod Behnam
+    </div>
+</body>
+</html>

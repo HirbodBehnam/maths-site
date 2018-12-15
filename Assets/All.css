@@ -1,0 +1,8 @@
+.calculate{
+    padding : 15px 30px 14px 30px !important;
+    margin  : 10px auto !important;
+    display : block !important;
+}
+.noLetterSpacing{
+    letter-spacing:0 !important;
+}

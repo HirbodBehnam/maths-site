@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GCD And LCM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/Assets/All.css">
+    <script src="Assets/All.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var lang = 0;
+        function validateAndFind(a,b){
+            var e = $("#ER");
+            e.hide();
+            var n1 = parseInt(a);
+            var n2 = parseInt(b);
+            if(n1 === "NaN" || isNaN(n1) || isNaN(a) || n2 === "NaN" || isNaN(n2) || isNaN(b)){
+                $("#ErrorMSG").text(lang === 0 ? "The input is not a number." : "مقدار مورد نظر یک عدد نیست.");
+                e.show();
+                return;
+            }
+            if(n1 < 1 || n2 < 1){
+                $("#ErrorMSG").text(lang === 0 ?"Number cannot be less than 1" : "عدد نمی تواند کمتر از 1 باشد.");
+                e.show();
+                return;
+            }
+            if(n1 > 200000000000 || n2 > 200000000000){
+                $("#ErrorMSG").text(lang === 0 ?"Number cannot be more than 200,000,000,000":"عدد نمی تواند بیشتر از 200 میلیارد باشد.");
+                e.show();
+                return;
+            }
+            GoToFind(n1,n2);
+        }
+        function GoToFind(a,b) {
+            var r = $("#GCDRes");
+            r.show();
+            var G = GCD(a,b);
+            if($('#FGCD').is(':checked')){
+                r.text(lang === 0 ? ("The GCD is: " + G) : "ب.م.م. مساوی است با " + G);
+            }else{
+                G = (a * b) / G;
+                r.text(lang === 0 ? ("The LCM is: " + G) : "ک.م.م. مساوی است با " + G);
+            }
+        }
+        function GCD(a,b){
+            return b === 0 ? a : GCD(b, a % b);
+        }
+        function checkAndSetPersian() {
+            if(checkPersian()){
+                lang = 1;
+                //Set Font
+                var style = $("<style>label,h3,p,button{ font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}" +
+                    "#FGCD,#FLCM{float: right}</style>");
+                $('html > head').append(style);
+                //Set text
+                $('html > body > div > h3').text("پیدا کردن ب.م.م. یا ک.م.م. دو عدد.");
+                $('html > body > div > div > h3').text("خطا!");
+                $('html > body > div > button').text("پیدا کن");
+                $('#N1Label').text("عدد اول را وارد کنید.");
+                $('#N2Label').text("عدد دوم را وارد کنید.");
+                $('#GCDLBL').text("ب.م.م");
+                $("#LCMLBL").text("ک.م.م");
+            }
+        }
+    </script>
+</head>
+<body onload="checkAndSetPersian();">
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:4px;">
+        <a href="/" class="w3-bar-item w3-button w3-hide-small">Rare Math Calculations</a>
+        <a href="/" class="w3-bar-item w3-button w3-hide-medium w3-hide-large">Maths</a>
+        <div class="w3-dropdown-hover w3-right">
+            <button class="w3-button" onclick="window.location.href = '/';">Back</button>
+        </div>
+    </div>
+</div>
+<div class="w3-container" style="margin-top: 50px">
+    <div id="ER" class="w3-panel w3-red w3-card-4" style="display: none">
+        <h3>Error!</h3>
+        <p id="ErrorMSG"></p>
+    </div>
+    <h3 style="text-align: center">Find GCD or LCM of two numbers.</h3>
+    <label id="N1Label"><b>Enter the first number:</b></label>
+    <input class="w3-input w3-border" type="number" id="GCD1">
+    <label id="N2Label"><b>Enter the second number:</b></label>
+    <input class="w3-input w3-border" type="number" id="GCD2">
+    <input class="w3-radio" type="radio" name="GoL" value="GCD" id="FGCD" checked>
+    <label id="GCDLBL">Find GCD</label><br>
+    <input class="w3-radio" type="radio" name="GoL" value="LCM" id="FLCM">
+    <label id="LCMLBL">Find LCM</label>
+    <button onclick="validateAndFind($('#GCD1').val(),$('#GCD2').val());" class="w3-btn w3-green w3-ripple calculate">Find</button>
+    <p id="GCDRes" class="w3-border w3-padding" style="display: none;"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Prime Numbers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/Assets/All.css">
+    <script src="Assets/All.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var lang = 0;
+        function validateAndFind(input){
+            var e = $("#ER");
+            e.hide();
+            var n = parseInt(input);
+            if(n === "NaN" || isNaN(n) || isNaN(input)){
+                $("#ErrorMSG").text(lang === 0 ? "The input is not a number." : "مقدار مورد نظر یک عدد نیست.");
+                e.show();
+                return;
+            }
+            if(n < 2){
+                $("#ErrorMSG").text(lang === 0 ?"Number cannot be less than 2" : "عدد نمی تواند کمتر از 2 باشد.");
+                e.show();
+                return;
+            }
+            if(n > 800000){
+                $("#ErrorMSG").text(lang === 0 ? "Number cannot be more than 800,000.":"عدد نمی تواند بیشتر از 800 هزار باشد.");
+                if(n > 100000000){
+                    $("#ErrorMSG").text("This site uses javascript to calculate. That is not a programming language like C++ that is fast and optimized." +
+                        " This language is designed to handle dynamic web pages not heavy math calculations. Only to make page dynamic." +
+                        " So if the value is bigger than that your browser will eat about 16GB of RAM! It could also take a whole crappy week to calculate " +
+                        "the whole God damn numbers. So for God sake enter a number less than 800,000. Plz");
+                }
+                e.show();
+                return;
+            }
+            findPrimes(input);
+        }
+        function findPrimes(LastNum) {
+            var i;
+            var j;
+            var Bool_For_Prime_Nums = [];
+            for(i = 0;i<=LastNum;i++){
+                Bool_For_Prime_Nums.push(true);
+            }
+            Bool_For_Prime_Nums[0] = false;
+            Bool_For_Prime_Nums[1] = false;
+            for (i = 2; i <= LastNum; i++) {
+                if (Bool_For_Prime_Nums[i]) {
+                    if (i * i > LastNum) 
+                        break;
+                    j = 2;
+                    do {
+                        Bool_For_Prime_Nums[j * i] = false;
+                    } while (++j * i <= LastNum);
+                }
+            }
+            //Now show it
+            var r = $("#FindPrimesRes");
+            r.empty();
+            r.show();
+            for(i = 2;i<Bool_For_Prime_Nums.length;i++){
+                if(Bool_For_Prime_Nums[i] === true){
+                    r.append("<li>" + i +"</li>");
+                }
+            }
+        }
+        function setHeight() {
+            var h = Math.max($(document).height(), $(window).height());
+            $("#FindPrimesRes").height(h - 300);
+        }
+        function checkAndSetPersian() {
+            if (checkPersian()) {
+                lang = 1;
+                //Set Font
+                var style = $("<style>label,h3,p,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+                $('html > head').append(style);
+                //Set text
+                $("html > body > div > h3").text("پیدا کردن اعداد اول از یک تا...");
+                $('html > body > div > label > b').text("عدد را وارد کنید:");
+                $('html > body > div > div > h3').text("خطا!");
+                $('html > body > div > button').text("پیدا کن");
+            }
+        }
+    </script>
+</head>
+<body onclick="setHeight();checkAndSetPersian();">
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:4px;">
+        <a href="/" class="w3-bar-item w3-button w3-hide-small">Rare Math Calculations</a>
+        <a href="/" class="w3-bar-item w3-button w3-hide-medium w3-hide-large">Maths</a>
+        <div class="w3-dropdown-hover w3-right">
+            <button class="w3-button" onclick="window.location.href = '/';">Back</button>
+        </div>
+    </div>
+</div>
+<div class="w3-container" style="margin-top: 50px">
+    <div id="ER" class="w3-panel w3-red w3-card-4" style="display: none">
+        <h3>Error!</h3>
+        <p id="ErrorMSG"></p>
+    </div>
+    <h3 style="text-align: center">Find prime numbers from 1 to &#8230;</h3>
+    <label><b>Enter the number:</b></label>
+    <input class="w3-input w3-border" type="number" id="FindPrimesInput">
+    <button onclick="validateAndFind($('#FindPrimesInput').val());" class="w3-btn w3-green w3-ripple calculate">Find</button>
+    <ul id="FindPrimesRes" class="w3-ul w3-border" style="display:none; overflow-y: scroll;-ms-overflow-y: scroll;">
+    </ul>
+</div>
+</body>
+</html>
