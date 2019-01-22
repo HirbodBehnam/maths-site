@@ -54,7 +54,8 @@
                 $("#Res").text("`x = " + x + "`");
                 MathJax.Hub.Queue(["Typeset",MathJax.Hub,document.getElementById("Res")]);
             }else{
-
+                $("#ErrorMSG").text(lang === 0 ? "Delta is less than 0." : "دلتا کمتر از صفر است.");
+                $("#ER").show();
             }
         }
         function checkAndSetPersian() {
