@@ -1,8 +1,17 @@
 function detectPrime(num) {
+    if(num === 2 || num === 3 || num === 5 || num === 7)
+        return -1;
+    if(num % 2 === 0)
+        return 2;
+    if(num % 3 === 0)
+        return 3;
     var TO = Math.sqrt(num);
-    for(var i = 2;i<=TO;i++)
+    for(var i = 5;i<=TO;i+=6){
         if(num % i === 0)
             return i;
+        if(num % (i + 2) === 0)
+            return i + 2;
+    }
     return -1;
 }
 function GCD(nums){
