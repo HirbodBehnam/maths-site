@@ -34,22 +34,25 @@
         function getAndSetFactors(number){
             var TO = Math.sqrt(parseInt(number));
             var Factors = [1];
-            for(var i = 2;i<TO;i++) {
+            for(var i = 2;i<=TO;i++) {
                 if (number % i === 0) {
                     Factors.push(i);
-                    if (i !== number / i) { // Don't add the square root twice
-                        Factors.push(number / i);
-                    }
+                    Factors.push(number / i);
                 }
             }
             Factors.push(number);
             Factors.sort(sortNumber);
+            //Remove square root
+            if(Factors[Factors.length / 2] === Factors[Factors.length / 2 - 1]){
+                Factors.splice(Factors.length / 2,1);
+            }
             var fr = $("#FactorsRes");
             fr.show();
             fr.empty();
             for(var j = 0;j<Factors.length;j++){
                 fr.append("<li>" + Factors[j] + "</li>");
             }
+            $('#FactorsCount').text((lang === 0 ? "Number of factors: " :"تعداد شمارنده ها: ") + Factors.length);
         }
         function sortNumber(a,b) {
             return a - b;
@@ -58,13 +61,14 @@
             if(checkPersian()){
                 lang = 1;
                 //Set Font
-                var style = $("<style>label,h3,p,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+                var style = $("<style>label,h3,h4,p,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
                 $('html > head').append(style);
                 //Set text
                 $('html > body > div > h3').text("پیدا کردن شمارنده های یک عدد.");
                 $('html > body > div > label > b').text("عدد را وارد کنید:");
                 $('html > body > div > div > h3').text("خطا!");
                 $('html > body > div > button').text("پیدا کن");
+                $('#FactorsCount').text("تعداد شمارنده ها:");
             }
         }
     </script>
@@ -88,6 +92,7 @@
     <label><b>Enter the number:</b></label>
     <input class="w3-input w3-border" type="number" id="FactorsInput">
     <button onclick="validateAndFind($('#FactorsInput').val());" class="w3-btn w3-green w3-ripple calculate">Find</button>
+    <h4 id="FactorsCount">Number of factors:</h4>
     <ul id="FactorsRes" class="w3-ul w3-border" style="display: none; margin-bottom: 10px">
     </ul>
 </div>
