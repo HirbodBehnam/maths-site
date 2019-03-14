@@ -27,12 +27,30 @@ function factorize(number){
     var a = parseInt(number);
     var b;
     var iv = [];
-    for (b = 2; a > 1; b++)
+    while(a % 2 === 0)
+    {
+        a /= 2;
+        iv.push(2);
+    }
+    while(a % 3 === 0)
+    {
+        a /= 3;
+        iv.push(3);
+    }
+    for (b = 5; a > 1; b+= 4)
+    {
         while (a % b === 0)
         {
             a /= b;
             iv.push(b);
         }
+        b+=2;
+        while (a % b === 0)
+        {
+            a /= b;
+            iv.push(b);
+        }
+    }
     return iv;
 }
 function GCDTwoNum(a, b){
