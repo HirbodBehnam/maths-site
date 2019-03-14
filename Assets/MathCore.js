@@ -15,10 +15,8 @@ function detectPrime(num) {
     return -1;
 }
 function GCD(nums){
-    var res,i;
-    i = 2;
-    res = GCDTwoNum(nums[0],nums[1]);
-    for(;i<nums.length; i++){
+    var res = GCDTwoNum(nums[0],nums[1]);
+    for(var i = 2;i<nums.length; i++){
         res = GCDTwoNum(nums[i],res);
     }
     return res;
