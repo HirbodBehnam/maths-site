@@ -88,11 +88,11 @@
     <div class="w3-container" style="margin-top: 50px">
         <h3 style="text-align: center">\(ax^2 + bx + c = 0\)</h3>
         <label><b>\(a\):</b></label>
-        <input class="w3-input w3-border" type="number" id="AInput">
+        <input class="w3-input w3-border" step=0.001 type="number" id="AInput">
         <label><b>\(b\):</b></label>
-        <input class="w3-input w3-border" type="number" id="BInput">
+        <input class="w3-input w3-border" step=0.001 type="number" id="BInput">
         <label><b>\(c\):</b></label>
-        <input class="w3-input w3-border" type="number" id="CInput">
+        <input class="w3-input w3-border" step=0.001 type="number" id="CInput">
         <button onclick="validateAndFind($('#AInput').val(),$('#BInput').val(),$('#CInput').val());" class="w3-btn w3-green w3-ripple calculate">Solve</button>
         <p id="Res" class="w3-border w3-padding" style="display: none;"></p>
     </div>
