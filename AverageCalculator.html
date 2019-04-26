@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Calculator</title>
+    <!--CSS and javascript-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/Assets/All.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="Assets/All.js"></script>
+    <style>
+        tr{
+            cursor: pointer;
+        }
+        td:hover {
+            background-color: #cccccc;
+        }
+    </style>
+    <script>
+    var lang = 0;
+    var numbersSum = 0;
+    var numbersPowerTwoSum = 0;
+    var numbersCount = 0;
+    function CalculateAverage(){
+        var num = Number.parseFloat($('#NumberInput').val());
+        if (Number.isNaN(num)){
+            alert(lang == 0 ? "Value you entered is not a number." : "مقدار وارد شده عدد نیست.");
+            return;
+        }
+        numbersSum += num;//Sum
+        numbersPowerTwoSum += (num * num);
+        numbersCount++;//Add one to count of numbers
+        $('#NumbersTable').append(FormatTable(num)); //Add element to table
+        document.getElementById("ResultText").innerHTML = FormatResult(numbersSum,numbersPowerTwoSum,numbersCount); //Update result
+        $('#NumberInput').val("");
+    }
+    function FormatTable(number){
+        return "<tr onclick=\"DeleteNumeber(" + number + ",this)\" class=\"item\"><td>" + number + "</td></tr>";
+    }
+    function FormatResult(sum,sum2,count){
+        var res = "Sum = ";
+        res += sum;
+        res += "<br>Count = ";
+        res += count;
+        res += "<br>Average (<span style=\"text-decoration: overline;\">x</span>) = "
+        var average = count == 0 ? 0 : sum / count;
+        res += Number(average.toFixed(11));
+        res += "<br>Varience (&sigma;&sup2;) = "
+        var varience = count == 0 ? 0 : (sum2 / count - average * average);
+        res += Number(varience.toFixed(11));
+        res += "<br>Standard Deviation (&sigma;) = ";
+        varience = Math.sqrt(varience);
+        res += Number(varience.toFixed(11));
+        res += "<br>Coefficient of Variation (<i>CV</i>) = ";
+        res += average <= 0 ? "N/A" : Number(Number.parseFloat(varience / average).toPrecision(11));
+        return res;
+    }
+    function DeleteNumeber(number,ele){
+        var res = confirm("Delete number " + number + " ?");
+        if(res == true){
+            ele.remove();
+            numbersSum -= number;
+            numbersPowerTwoSum -= (number * number);
+            numbersCount--;
+            document.getElementById("ResultText").innerHTML = FormatResult(numbersSum,numbersPowerTwoSum,numbersCount);//Update result
+        }
+    }
+    function checkAndSetPersian() {
+            if (checkPersian()) {
+                lang = 1;
+                //Set Font
+                var style = $("<style>label,h3,#ErrorMSG,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+                $('html > head').append(style);
+                //Set text
+                $('html > body > div > div > h3').text("خطا!");
+                $('html > body > div > button').text("حل کن");
+            }
+        }
+    </script>
+</head>
+<body onload="checkAndSetPersian();">
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:4px;">
+            <a href="/" class="w3-bar-item w3-button w3-hide-small">Rare Math Calculations</a>
+            <a href="/" class="w3-bar-item w3-button w3-hide-medium w3-hide-large">Maths</a>
+            <div class="w3-dropdown-hover w3-right">
+                <button class="w3-button" onclick="window.location.href = '/';">Back</button>
+            </div>
+        </div>
+    </div>
+    <div class="w3-container" style="margin-top: 50px">
+        <h3 style="text-align: center">Enter numbers one by one</h3>
+        <div>
+            <button class="w3-btn w3-green w3-ripple" style="float: right" onclick="CalculateAverage();">Add</button>
+            <div style="overflow: hidden; padding-right: .5em;">
+                <input class="w3-input" type="number" style="width: 100%" id="NumberInput">
+            </div>
+        </div>
+        <p id="ResultText">
+            Sum = 0<br>Count = 0<br>Average (<span style="text-decoration: overline;">x</span>) = 0<br>Varience (&sigma;&sup2;) = 0<br>Standard Deviation (&sigma;) = 0<br>Coefficient of Variation (<i>CV</i>) = N/A
+        </p>
+        <table id="NumbersTable" class="w3-table-all">
+        </table>
+    </div>
+</body>
+</html>
