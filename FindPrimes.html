@@ -41,11 +41,8 @@
             var i;
             var j;
             var Bool_For_Prime_Nums = [];
-            for(i = 0;i<=LastNum;i++){
+            for(i = 0;i<=LastNum;i++)
                 Bool_For_Prime_Nums.push(true);
-            }
-            Bool_For_Prime_Nums[0] = false;
-            Bool_For_Prime_Nums[1] = false;
             for (i = 2; i <= LastNum; i++) {
                 if (Bool_For_Prime_Nums[i]) {
                     if (i * i > LastNum) 
@@ -60,10 +57,15 @@
             var r = $("#FindPrimesRes");
             r.empty();
             r.show();
-            for(i = 2;i<Bool_For_Prime_Nums.length;i++){
-                if(Bool_For_Prime_Nums[i] === true){
+            r.append("<li>2</li>");
+            if(Bool_For_Prime_Nums.length >= 3)
+                r.append("<li>3</li>");
+            for(i = 5;i<Bool_For_Prime_Nums.length;i+=4){
+                if(Bool_For_Prime_Nums[i] === true)
                     r.append("<li>" + i +"</li>");
-                }
+                i+=2;
+                if(Bool_For_Prime_Nums[i] === true)
+                    r.append("<li>" + i + "</li>");
             }
         }
         function setHeight() {
