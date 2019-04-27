@@ -69,11 +69,11 @@
             if (checkPersian()) {
                 lang = 1;
                 //Set Font
-                var style = $("<style>label,h3,#ErrorMSG,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+                var style = $("<style>label,h3,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
                 $('html > head').append(style);
                 //Set text
-                $('html > body > div > div > h3').text("خطا!");
-                $('html > body > div > button').text("حل کن");
+                $('html > body > div > div > button').text("اضافه کن");
+                $("#TitleText").text("اعداد را یکی یکی وارد کنید.");
             }
         }
     </script>
@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="w3-container" style="margin-top: 50px">
-        <h3 style="text-align: center">Enter numbers one by one</h3>
+        <h3 id="TitleText" style="text-align: center">Enter numbers one by one</h3>
         <div>
             <button class="w3-btn w3-green w3-ripple" style="float: right" onclick="CalculateAverage();">Add</button>
             <div style="overflow: hidden; padding-right: .5em;">
