@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Internet Explorer</title>
+	<script>
+		var date = new Date();
+        date.setTime(date.getTime() + (720*24*60*60*1000));
+        var expires = "; expires=" + date.toUTCString();
+        document.cookie = "IE=1" + expires + "; path=/";
+	</script>
+</head>
+<body>
+	<h2>Please use something else instead of IE.<br>Some of the site functions won't work with IE.</h2>
+	<a href="/">Turn Back</a>
+	<a href="https://www.google.com/chrome/">Download Chrome</a><br>
+	<a href="https://www.mozilla.org/en-US/firefox/">Download Firefox</a>
+	<p>Or use Edge :\</p>
+</body>
+</html>
