@@ -6,6 +6,7 @@
     <!--CSS and javascript-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/Assets/All.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="Assets/All.js"></script>
     <style>
@@ -14,6 +15,24 @@
         }
         td:hover {
             background-color: #cccccc;
+        }
+        /* https://stackoverflow.com/a/29270165/4213397 */
+        .kc_fab_main_btn{
+            text-align: center !important;
+            cursor: pointer;
+            background-color:#4CAF50;
+            width:60px;
+            height:60px;
+            border-radius:100%;
+            background:#4CAF50;
+            border:none;
+            outline:none;
+            color:#FFF;
+            font-size:24px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
         }
     </style>
     <script>
@@ -57,7 +76,7 @@
     }
     function DeleteNumeber(number,ele){
         var res = confirm("Delete number " + number + " ?");
-        if(res == true){
+        if(res){
             ele.remove();
             numbersSum -= number;
             numbersPowerTwoSum -= (number * number);
@@ -65,17 +84,27 @@
             document.getElementById("ResultText").innerHTML = FormatResult(numbersSum,numbersPowerTwoSum,numbersCount);//Update result
         }
     }
-    function checkAndSetPersian() {
-            if (checkPersian()) {
-                lang = 1;
-                //Set Font
-                var style = $("<style>label,h3,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
-                $('html > head').append(style);
-                //Set text
-                $('html > body > div > div > button').text("اضافه کن");
-                $("#TitleText").text("اعداد را یکی یکی وارد کنید.");
-            }
+    function ResetAll(){
+        var res = confirm("Delete all numbers?");
+        if(res){
+            numbersCount = 0;
+            numbersSum = 0;
+            numbersPowerTwoSum = 0;
+            document.getElementById("ResultText").innerHTML = FormatResult(numbersSum,numbersPowerTwoSum,numbersCount); //Update result
+            $('#NumbersTable').empty();
         }
+    }
+    function checkAndSetPersian() {
+        if (checkPersian()) {
+            lang = 1;
+            //Set Font
+            var style = $("<style>label,h3,button { font-family:'B Koodak','0 Koodak','Segoe UI',Arial,Helvetica,sans-serif !important; text-align: right;display: block;direction: rtl;}</style>");
+            $('html > head').append(style);
+            //Set text
+            $('html > body > div > div > button').text("اضافه کن");
+            $("#TitleText").text("اعداد را یکی یکی وارد کنید.");
+        }
+    }
     </script>
 </head>
 <body onload="checkAndSetPersian();">
@@ -101,6 +130,7 @@
         </p>
         <table id="NumbersTable" class="w3-table-all">
         </table>
+        <button class="kc_fab_main_btn" onclick="ResetAll();"><i class="fa fa-trash"></i></button>
     </div>
 </body>
 </html>
