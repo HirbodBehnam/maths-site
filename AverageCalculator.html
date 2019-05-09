@@ -41,13 +41,15 @@
     var numbersPowerTwoSum = 0;
     var numbersCount = 0;
     function CalculateAverage(){
-        var num = Number.parseFloat($('#NumberInput').val());
-        if (Number.isNaN(num)){
+        var num = parseFloat($('#NumberInput').val());
+        if (isNaN(num)){
             alert(lang == 0 ? "Value you entered is not a number." : "مقدار وارد شده عدد نیست.");
             return;
         }
         numbersSum += num;//Sum
+		numbersSum = Number(numbersSum.toFixed(11));
         numbersPowerTwoSum += (num * num);
+		numbersPowerTwoSum = Number(numbersPowerTwoSum.toFixed(11));
         numbersCount++;//Add one to count of numbers
         $('#NumbersTable').append(FormatTable(num)); //Add element to table
         document.getElementById("ResultText").innerHTML = FormatResult(numbersSum,numbersPowerTwoSum,numbersCount); //Update result
@@ -71,13 +73,13 @@
         varience = Math.sqrt(varience);
         res += Number(varience.toFixed(11));
         res += "<br>Coefficient of Variation (<i>CV</i>) = ";
-        res += average <= 0 ? "N/A" : Number(Number.parseFloat(varience / average).toPrecision(11));
+        res += average <= 0 ? "N/A" : Number(parseFloat(varience / average).toPrecision(11));
         return res;
     }
     function DeleteNumeber(number,ele){
         var res = confirm("Delete number " + number + " ?");
-        if(res){
-            ele.remove();
+        if(res == true){
+            $(ele).remove();
             numbersSum -= number;
             numbersPowerTwoSum -= (number * number);
             numbersCount--;
