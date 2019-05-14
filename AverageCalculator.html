@@ -54,6 +54,7 @@
         $('#NumbersTable').append(FormatTable(num)); //Add element to table
         document.getElementById("ResultText").innerHTML = FormatResult(numbersSum,numbersPowerTwoSum,numbersCount); //Update result
         $('#NumberInput').val("");
+        $('#NumberInput').focus();
     }
     function FormatTable(number){
         return "<tr onclick=\"DeleteNumeber(" + number + ",this)\" class=\"item\"><td>" + number + "</td></tr>";
