@@ -135,5 +135,11 @@
         </table>
         <button class="kc_fab_main_btn" onclick="ResetAll();"><i class="fa fa-trash"></i></button>
     </div>
+    <script>
+        $("#NumberInput").keydown(function(event) {
+            if(event.keyCode == 13)
+                CalculateAverage();
+        });
+    </script>
 </body>
 </html>
